@@ -1,25 +1,22 @@
-
 import React from "react";
 import { useForm } from "react-hook-form";
 
 import axios from 'axios';
 
-function Login() {
+function Register() {
 
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data.name + "-"+data.user+"-"+data.email+"-"+data.password)
+        console.log(data.email+"-"+data.password)
         
-        axios.post(`http://localhost:3000/add_user`,{
-            name: data.name,
-            user: data.user,
+        axios.post(`http://localhost:3000/login`,{
             email: data.email,
             password:data.password
         })
         .then(res => {
           console.log(res.data);
-            console.log(document.getElementById('user'));
+            
            // document.getElementById('user').value="";
         })
         .catch(err => console.error(err));
@@ -36,19 +33,9 @@ function Login() {
        <div className="Left-login">
         
         <form onSubmit={handleSubmit(onSubmit)} className="Login-Form">
-        <h2>Welcome</h2>
-            <div className="Form-items">
-                
-                <input className="Input"  type="text" {...register('name', {
-                    required: true,
-                    minLength: 2,
-                })} placeholder="Name" />
-                {errors.name?.type === 'required' && <p>El campo es requerido</p>}
-            </div>
-            <div className="Form-items">
-               
-                <input className="Input" type="text" id="user" {...register('user')}  placeholder="User" />
-            </div>
+        <h2>Login</h2>
+
+
             <div className="Form-items">
                 
                 <input className="Input" type="text"  {...register('email', {
@@ -74,4 +61,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
