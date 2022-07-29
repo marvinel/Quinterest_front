@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 
 import axios from 'axios';
 
+ 
+
 function Register() {
 
 
@@ -54,6 +56,7 @@ function Register() {
         <div className="Right-login">
                 <div className="Login-img">
                     <h3>IMAGEN</h3>
+                 
                 </div>
         </div>
         </div>

@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 
 import axios from 'axios';
 
+import iconoreg from "../iconoreg.png";  
+
 function Login() {
 
 
@@ -67,6 +69,7 @@ function Login() {
         <div className="Right-login">
                 <div className="Login-img">
                     <h3>IMAGEN</h3>
+                    <img src={iconoreg} alt="icono" />
                 </div>
         </div>
         </div>

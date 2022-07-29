@@ -40,21 +40,21 @@
 
 /*LOGIN */
 .Login-wrapper{
-  background-color:rgb(224, 123, 55) ;
+  background-color:rgb(255, 138, 60) ;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center ;
 }
 .Login{
-  height: 70%;
-  width: 70%;
+  height: 85%;
+  width: 85%;
   display: flex;
   justify-content: center;
   align-items: stretch;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, 0.2);
  
 
 }
@@ -64,23 +64,23 @@ width: 100%;
 text-align: center;
 
 display: flex;
-justify-content: center;
+
 align-items: center;
 
 }
 .Login-Form{
  
-  background-color: rgb(216, 157, 118) ;
+  background-color: rgb(255, 186, 140) ;
   border-radius: 10px;
   padding: 15px;
-  width: 70%;
- 
+  width: 60%;
+  margin-left: 50px;
  
  
 
 }
 .Login-Form h2{
-  color : rgb(224, 123, 55) ;
+  color : rgb(255, 138, 60) ;
 }
 
 .Form-items{
@@ -102,7 +102,7 @@ align-items: center;
 
 .form-button{
   color: white; 
-  background-color: rgb(224, 123, 55) ;
+  background-color: rgb(255, 138, 60) ;
   width: 80%;
   border-radius: 4px;
   cursor: pointer;
@@ -111,7 +111,7 @@ align-items: center;
   border: none;
 }
 .form-button:hover {
-  background-color:rgb(221, 103, 24) ;
+  background-color:rgb(255, 138, 60) ;
 }
 .Right-login{
  width: 100%;
@@ -122,4 +122,117 @@ align-items: center;
 .Login-img{
   margin: 0px auto;
   
+}
+
+
+/*HOME*/
+
+.Galeria{
+  margin: 1rem auto;
+  width:100%;
+  max-width:1300px;
+  column-count: 5;
+  overflow: hidden;
+}
+
+
+.Image{
+  background-color: rgb(255, 255, 255);
+  margin: 5px;
+  
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  
+}
+.Image:hover{
+  cursor: pointer;
+  visibility: visible;
+
+}
+.Image img{
+  padding: 10px;
+  width: 90%;
+  border-radius: 25px 25px 0 0;
+  transition: opacity .25s ease-in-out;
+  opacity: 1;
+  transform: translate(0,0);
+}
+.Image img:hover{
+  
+ opacity: .7 ;
+
+ transform: scale(1.1);
+}
+
+.Marca{
+  visibility: hidden;
+  position: absolute;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items:center
+}
+.Details-image{
+  margin: 0;
+  width: 100%;
+  height: 40px;
+  
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+
+}
+
+
+.Details-image .Details-perfil img{
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
+.Details-image p {
+  
+  font-size: 15px;
+font-weight:lighter;
+  margin: 0;
+}
+
+/*HEADER*/
+.Header{
+  height: 100px;
+  display: flex;
+/*  position: fixed;*/
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0px 15px 15px 0px rgba(40, 44, 52, 0.432);
+  width: 100%;
+  background-color:chocolate;
+
+  align-items: center;
+  justify-content: space-evenly;
+  
+}
+
+.Logo img{
+  height: 50px;
+  
+}
+
+.Nav{
+
+}
+
+.Nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ li {
+  display: inline;
+  color: rgb(248, 247, 247);
+  padding: 8px 16px;
+  text-decoration: none;
+  float: left;
 }
