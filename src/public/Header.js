@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
+
+ 
 function Header() {
 
 
@@ -18,9 +21,10 @@ function Header() {
             
                 <nav className="Nav">
                     <ul>
-                        <li>Inicio</li>
-                        <li>Perfil</li>
-                        <li>Cerrar sesion</li>
+                        <li><Link to="/">Inicio </Link></li>
+                        <li><Link to="/perfil">Perfil</Link></li>
+                        <li><Link to="/Login">Cerrar sesion</Link></li>
+                        <li><Link to="/Register">Iniciar Sesion</Link></li>
                     </ul>
                 </nav>
             
