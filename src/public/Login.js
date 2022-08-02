@@ -1,33 +1,39 @@
 
-import React from "react";
-import { useForm } from "react-hook-form";
 
+import React  from "react";
+import { useForm } from "react-hook-form";
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-import iconoreg from "../iconoreg.png";  
+ 
 
 function Login() {
+    
 
-
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit,  formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data.name + "-"+data.user+"-"+data.email+"-"+data.password)
+        console.log(data.email+"-"+data.password)
         
-        axios.post(`http://localhost:3000/add_user`,{
-            name: data.name,
-            user: data.user,
+        axios.post(`http://localhost:3000/login`,{
             email: data.email,
             password:data.password
         })
         .then(res => {
           console.log(res.data);
-            console.log(document.getElementById('user'));
-           // document.getElementById('user').value="";
+          console.log(res.data)
+          const user = {
+            token: res.data.token,
+            user: res.data.usuario.user,
+            id: res.data.usuario._id
+        }
+        
+
+        window.localStorage.setItem('userConexion', JSON.stringify(user));
+     
         })
         .catch(err => console.error(err));
 
     };
-
 
 
   return (
@@ -38,19 +44,9 @@ function Login() {
        <div className="Left-login">
         
         <form onSubmit={handleSubmit(onSubmit)} className="Login-Form">
-        <h2>Welcome</h2>
-            <div className="Form-items">
-                
-                <input className="Input"  type="text" {...register('name', {
-                    required: true,
-                    minLength: 2,
-                })} placeholder="Name" />
-                {errors.name?.type === 'required' && <p>El campo es requerido</p>}
-            </div>
-            <div className="Form-items">
-               
-                <input className="Input" type="text" id="user" {...register('user')}  placeholder="User" />
-            </div>
+        <h2>Login</h2>
+
+
             <div className="Form-items">
                 
                 <input className="Input" type="text"  {...register('email', {
@@ -62,14 +58,15 @@ function Login() {
                
                 <input className="Input" type="password"  {...register('password')} placeholder="Password" />
             </div>
-
+            <p>No tienes cuenta? <Link to="/register">Registrate</Link></p>
             <input className="form-button" type="submit" value="Login" />
         </form>
+  
         </div> 
         <div className="Right-login">
                 <div className="Login-img">
                     <h3>IMAGEN</h3>
-                    <img src={iconoreg} alt="icono" />
+                 
                 </div>
         </div>
         </div>
