@@ -1,15 +1,22 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import axios from 'axios';
 
 import iconoreg from "../iconoreg.png";  
+import useUser from "../useUser";
 
 function Login() {
 
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const {login, isLogged} = useUser();
+
+    useEffect(() => {
+        if (isLogged) console.log("No deberia poder entrar al login")
+     },[isLogged])  
+     
     const onSubmit = data => {
         console.log(data.name + "-"+data.user+"-"+data.email+"-"+data.password)
         
@@ -22,6 +29,7 @@ function Login() {
         .then(res => {
           console.log(res.data);
             console.log(document.getElementById('user'));
+            login();
            // document.getElementById('user').value="";
         })
         .catch(err => console.error(err));

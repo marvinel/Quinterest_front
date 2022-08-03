@@ -1,7 +1,7 @@
 import React from "react";
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import IconButton from '@mui/material/IconButton';
-
+import {Link} from 'react-router-dom';
 
 
 function Card({image}) {
@@ -23,7 +23,7 @@ function Card({image}) {
                 <div className="Details-perfil">
                     <img src="https://noverbal.es/uploads/blog/rostro-de-un-criminal.jpg" alt="perfil"></img>
                 </div>
-                <p>{image.title} 😊</p>
+                <p><Link to={"/perfil/"+image.user}>{image.title}</Link>😊</p>
             </div>
         </div>
     );
