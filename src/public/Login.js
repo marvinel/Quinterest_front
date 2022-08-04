@@ -1,11 +1,9 @@
 
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 import useUser from "../useUser";
-
+import loginService from "../services/loginService";
 function Login() {
 
 
@@ -17,29 +15,15 @@ function Login() {
      },[isLogged])  
      
      const onSubmit = data => {
-        console.log(data.email+"-"+data.password)
         
-        axios.post(`http://localhost:3000/login`,{
-            email: data.email,
-            password:data.password
+        const email = data.email
+        const password = data.password
+        loginService({email , password})
+        .then(res=>{
+            console.log(res)
+            login(res);
         })
-        .then(res => {
-          console.log(res.data);
-          console.log(res.data)
-          const user = {
-            token: res.data.token,
-            user: res.data.usuario.user,
-            id: res.data.usuario._id
-        }
-        
 
-       
-            login(user);
-           // document.getElementById('user').value="";
-        })
-        .catch(err =>{ 
-            window.sessionStorage.removeItem('jwt');
-            console.error(err)});
 
     };
 

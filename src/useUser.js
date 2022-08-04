@@ -1,23 +1,31 @@
 import { useCallback, useContext } from "react";
-import { set } from "react-hook-form";
+import axios from 'axios';
 
 import Context from "./context/UserContext";
 
-export default function useUser () {
-    const {favs,jwt,setFavs, setJwt} = useContext(Context)
+export default function useUser() {
+    const { favs, jwt, setFavs, setJwt } = useContext(Context)
 
     const login = useCallback((user) => {
         setJwt(user.token)
-        window.sessionStorage.setItem('jwt', JSON.stringify(user.token));
-    },[])
+        window.sessionStorage.setItem('jwt', user.token);
+    }, [setJwt])
 
-    const logout = useCallback(() => {  
+    const logout = useCallback(() => {
         setJwt(null)
         window.sessionStorage.removeItem('jwt');
-    },[setJwt])
+    }, [setJwt])
 
-    const addfav = useCallback(({id}) => {
-        setFavs([id])
+    const addfav = useCallback(({ id }) => {
+        console.log(jwt)
+        axios.post(`http://localhost:3000/addfav/${id}`, {
+            token: jwt
+        })
+            .then(res => {
+                console.log(res.data);
+                setFavs(res.data.favs)
+            })
+            .catch(err => console.error(err));
     }, [jwt, setFavs])
 
     return {
@@ -27,4 +35,4 @@ export default function useUser () {
         login,
         logout
     }
- }
+}

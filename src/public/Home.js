@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
-import Card from './minicomponent/Card.js';
 
+import Card from './minicomponent/Card.js';
+import getallimagesService from "../services/getallimagesService.js";
 
 function Home() {
 
   const [images, setImages] = useState({})
   
   useEffect(() => {
-
-    axios.get(`http://localhost:3000`)
-      .then(res => {
-        console.log(res.data);
-        setImages(res.data);
-
-      })
-      .catch(err => console.error(err));
+    getallimagesService()
+    .then(res =>{
+      setImages(res)
+    })
   }, []);
-  
-
-
-
   return (
     <div >
       <h2>INICIO</h2>
