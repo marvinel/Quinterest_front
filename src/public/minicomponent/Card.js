@@ -2,7 +2,7 @@ import React from "react";
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import IconButton from '@mui/material/IconButton';
 import {Link} from 'react-router-dom';
-
+import Fav from "../Fav.js";
 
 function Card({image}) {
 
@@ -13,8 +13,10 @@ function Card({image}) {
                     <IconButton aria-label="Marcar">
                         <BookmarkBorderIcon />
                     </IconButton>
+                    
                 </div>
                 <div>
+                
                     <p>{image.description}</p>
                 </div>
             </span>
@@ -24,6 +26,7 @@ function Card({image}) {
                     <img src="https://noverbal.es/uploads/blog/rostro-de-un-criminal.jpg" alt="perfil"></img>
                 </div>
                 <p><Link to={"/perfil/"+image.user}>{image.title}</Link>😊</p>
+                <Fav id={image._id}></Fav>
             </div>
         </div>
     );

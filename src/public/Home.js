@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import Card from './minicomponent/Card.js';
+
+
 function Home() {
 
   const [images, setImages] = useState({})
@@ -15,6 +17,8 @@ function Home() {
       })
       .catch(err => console.error(err));
   }, []);
+  
+
 
 
   return (
