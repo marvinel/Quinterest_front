@@ -5,15 +5,10 @@ import useUser from "../useUser";
  
 function Header() {
     const {isLogged, logout} = useUser();
-    const [user, setUser] = useState(false)
+  
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('userConexion'));
-        if (user) {
-         console.log("Usuario loggeado")
-        setUser(true)
-        }else{
-            console.log("Usuario Desconectadoa")        
-        }
+       
+       
       }, []);
 
     return (
@@ -26,7 +21,7 @@ function Header() {
                         <li ><Link to="/">Inicio</Link></li>
                         <li><Link to="/perfil/">Perfil</Link></li>
                        {isLogged
-                       ?<li><button onClick={logout}>Cerrar session</button></li>
+                       ?<li><button className="Logout" onClick={logout}>Logout</button></li>
                        : <li > <Link to="/login">Iniciar sesion</Link></li>
                     } 
                     </ul>

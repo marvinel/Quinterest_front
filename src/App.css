@@ -204,14 +204,12 @@ font-weight:lighter;
 .Header{
   height: 100px;
   display: flex;
+  background-color: rgb(241, 241, 241);
 /*  position: fixed;*/
-  border-radius: 0px 0px 10px 10px;
-  box-shadow: 0px 15px 15px 0px rgba(40, 44, 52, 0.432);
+  box-shadow: 0px 15px 15px 0px rgba(40, 44, 52, 0.178);
   width: 100%;
-  background-color:chocolate;
-
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between
   
 }
 
@@ -221,7 +219,7 @@ font-weight:lighter;
 }
 
 .Nav{
-
+ color: black;
 }
 
 .Nav ul {
@@ -231,8 +229,51 @@ font-weight:lighter;
 }
  li {
   display: inline;
-  color: rgb(248, 247, 247);
+ 
   padding: 8px 16px;
-  text-decoration: none;
+ 
   float: left;
+}
+a{
+  color: rgb(26, 26, 26);
+  font-weight: bold;
+  font-family:  'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-decoration: none;
+}
+
+.Logout{
+  font-family:  'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border: none;
+  border-radius: 50px;
+  border: 2px solid  rgb(26, 26, 26);
+  color:  rgb(26, 26, 26);
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  transition: background-color .55s ease-in-out;
+}
+
+.Logout:hover{
+
+  background-color: red;
+  cursor: pointer;
+  color: white;
+  border: 2px solid  white;
+}
+/**PERFIL*/
+
+.Image-wrapper{
+  background-color: rgb(255, 255, 255);
+  margin: 5px;
+  
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  width: 300px;
+}
+.Image-wrapper img{
+padding: 10px;
+width: 90%;
 }

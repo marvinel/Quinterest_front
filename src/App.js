@@ -16,7 +16,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/perfil/:id" element={<Perfil />} />
+        <Route path="/perfil/" element={<Perfil />} > 
+        <Route path=":id" element={<Perfil />}/>
+        </Route>
       </Routes>
     </div>
     </UserContextProvider>
