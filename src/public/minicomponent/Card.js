@@ -7,19 +7,10 @@ import Fav from "../Fav.js";
 function Card({image}) {
 
     return (
-        <div className="Image" key={image._id}>
-            <span className="Marca">
-                <div>
-                    <IconButton aria-label="Marcar">
-                        <BookmarkBorderIcon />
-                    </IconButton>
-                    
-                </div>
-                <div>
-                
-                    <p>{image.description}</p>
-                </div>
-            </span>
+        <div className="Image" >
+            
+    
+        
             <img src={image.image.secure_url} alt={image.title} />
             <div className="Details-image">
                 <div className="Details-perfil">

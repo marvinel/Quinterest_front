@@ -15,10 +15,10 @@ function Home() {
   }, []);
   return (
     <div >
-      <h2>INICIO</h2>
+     
       {images.images ?
         <div className="Galeria">
-          <svg data-testid="BookmarkBorderIcon"></svg>
+         
           {
             images.images.map((image) => (
              <Card key={image._id} image={image}/>
