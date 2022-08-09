@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
-import iconoreg from "../iconoreg.png";
+//import iconoreg from "../iconoreg.png";
 import registerService from "../services/registerService";
 
 function Register() {
@@ -36,11 +36,11 @@ function Register() {
                 <div class="form-container sign-up-container">
                     <form onSubmit={handleSubmit(onSubmit)} >
                         <h1>Create Account</h1>
-                        <div class="social-container">
+                  {  /*    <div class="social-container">
                             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
+                        </div>*/}
                         <span>or use your email for registration</span>
                        
                         <input type="text" {...register('name', {

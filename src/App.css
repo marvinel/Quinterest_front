@@ -384,16 +384,88 @@ a{
 }
 /**PERFIL*/
 
+
+.Cabecera{
+  width: 100%;
+  height: 80px;
+  background-color: #282c34;
+}
+.User-section{
+  display: flex;
+
+}
+.Perfil-info{
+  
+  background-color: #DDDDDD;
+
+  position: relative;
+  width: 300px;
+  min-width: 300px;
+}
+.Perfil-img{
+position: absolute;
+width: 150px;
+height: 150px;
+border-radius: 50%;
+border: 5px solid #DDDDDD ;
+top: -60px;
+left: 50%;
+margin-left: -75px;
+overflow: hidden;
+background-color:#DDDDDD ;
+}
+
+.Perfil-img img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.Perfil-detail{
+margin-top: 100px;
+}
+.My-Img{
+  overflow-y: scroll;
+  height: 70vh;
+  margin: 10px;
+}
+.Perfil-gallery{
+  display: flex;
+  flex-wrap: wrap;
+
+}
 .Image-wrapper{
-  background-color: rgb(255, 255, 255);
+  
   margin: 5px;
   
   border-radius: 15px;
   overflow: hidden;
   text-align: center;
-  width: 300px;
+  width: 30%;
+  position: relative;
 }
 .Image-wrapper img{
 padding: 10px;
 width: 90%;
+border-radius: 15px;
+}
+.Description-Image{
+  position: absolute;
+
+
+  opacity: 0;
+  transition: .5s ease;
+  width: 80%;
+  background-color: #282c3480;
+
+
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+.Image-wrapper:hover .Description-Image{
+  opacity: 1;
 }

@@ -37,11 +37,11 @@ function Login() {
                 <div class="form-container sign-in-container">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <h1>Sign in</h1>
-                        <div class="social-container">
+                   {/*   <div class="social-container">
                             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
+    </div>*/}
                         <span>or use your account</span>
                         <input className="Input" type="email"  {...register('email', {
                             pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i
@@ -50,7 +50,8 @@ function Login() {
 
                         <input className="Input" type="password"  {...register('password')} placeholder="Password" />
                         
-                        <a href="#">Forgot your password?</a>
+                       {// <a href="#">Forgot your password?</a>
+                       }
                         <button type="submit" value="Login">Sign In</button>
                     </form>
                 </div>
@@ -60,7 +61,7 @@ function Login() {
                         <div class="overlay-panel overlay-right">
                             <h1>Hello, Friend!</h1>
                             <p>Enter your personal details and start journey with us</p>
-                            <Link to="/register"> <button class="ghost" id="signUp">Registrate</button></Link>
+                            <Link to="/register"> <button class="ghost" id="signUp">Sign Up</button></Link>
                         </div>
                     </div>
                 </div>
