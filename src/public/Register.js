@@ -1,11 +1,16 @@
-import React from "react";
+import React,{useState} from "react";
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 //import iconoreg from "../iconoreg.png";
 import registerService from "../services/registerService";
+import { useNavigate } from "react-router-dom";
+
+import Alert from '@mui/material/Alert';
 
 function Register() {
+    let navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [alert, setAlert] = useState("0")
     const onSubmit = data => {
         const name = data.name
         const user = data.user
@@ -14,32 +19,45 @@ function Register() {
         registerService({ name, user, email, password })
             .then(res => {
                 console.log(res)
+                if(res.ok === false){
+                    setAlert("2")
+                }else{
+                    setAlert("1")
+                }
+                
+
             })
-
+            .catch(err => {
+                console.log("no pudo registrar por: " + err)
+                setAlert("2")
+            })
+            const timer = setTimeout(() => {
+                if(alert === "1"){
+                    navigate(`/`);
+                }
+                setAlert("0")
+            }, 2000);
+            return () => clearTimeout(timer);
     };
-
     return (
         <div className="Login-wrapper">
-
-
-            <div class="container" id="container">
-            <div class="overlay-container-signup">
-                    <div class="overlay">
-                        <div class="overlay-panel overlay-left">
+            <div className="container" id="container">
+            <div className="overlay-container-signup">
+                    <div className="overlay">
+                        <div className="overlay-panel overlay-left">
                             <h1>Welcome Back!</h1>
                             <p>To keep connected with us please login with your personal info</p>
-                            <Link to="/login"><button class="ghost" id="signIn">Sign In</button></Link>
+                            <Link to="/login"><button className="ghost" id="signIn">Sign In</button></Link>
                         </div>
-
                     </div>
                 </div>
-                <div class="form-container sign-up-container">
+                <div className="form-container sign-up-container">
                     <form onSubmit={handleSubmit(onSubmit)} >
                         <h1>Create Account</h1>
-                  {  /*    <div class="social-container">
-                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                  {  /*    <div className="social-container">
+                            <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
+                            <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                            <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
                         </div>*/}
                         <span>or use your email for registration</span>
                        
@@ -60,6 +78,18 @@ function Register() {
                 </div>
 
             </div>
+            {
+                alert === "1" &&
+                <Alert variant="filled" severity="success">
+                    This is a success alert — check it out!
+                </Alert>
+            }
+            {
+                alert === "2" &&
+                <Alert variant="filled" severity="error">
+                    This is an error alert — check it out!
+                </Alert>
+            }
         </div>
     );
 }

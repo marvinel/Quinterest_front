@@ -17,16 +17,18 @@ export default function useUser() {
     }, [setJwt])
 
     const addfav = useCallback(({ id }) => {
-        console.log(jwt)
         axios.post(`http://localhost:3000/addfav/${id}`, {
             token: jwt
         })
             .then(res => {
-                console.log(res.data);
+                console.log("aca se añaden fav")
+                console.log(res.data.favs)
                 setFavs(res.data.favs)
+                
             })
-            .catch(err => console.error(err));
+            .catch(err => console.error("error: "+err));
     }, [jwt, setFavs])
+
 
     return {
         addfav,

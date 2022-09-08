@@ -7,6 +7,8 @@ import Home from './public/Home';
 import Header from './public/Header';
 import Perfil from './private/Perfil'
 import {UserContextProvider} from './context/UserContext';
+
+
 function App() {
   return (
     <UserContextProvider>
