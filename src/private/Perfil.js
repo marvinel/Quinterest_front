@@ -14,7 +14,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-import Card from '../public/minicomponent/Card.js';
+import HashLoader from "react-spinners/HashLoader";
 const style = {
   position: 'absolute',
   top: '50%',
@@ -40,7 +40,7 @@ function Perfil() {
 
     let id2 = id || ''
     if (!jwt && !id) {
-      console.log("no puede estar aca va para el login")
+     
       navigate(`/login`);
     } else {
 
@@ -104,7 +104,7 @@ function Perfil() {
   const handleOpen = (type) => setOpen({type:type, open:true});
   const handleClose = () => setOpen({type:"0", open:false});
   if (!info.name) {
-    return <div>Cargando ...</div>
+    return <div><HashLoader color={'#EB0105'} loading={true}  size={150} /></div>
   } else {
 
     return (

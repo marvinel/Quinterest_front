@@ -11,12 +11,16 @@ function Card({ image }) {
 
 
             <div className="Image-wrapper">
+                <Link to={`/image/${image._id}`}>
+               
                 <img src={image.image.secure_url} alt={image.title} />
-                <div className="Image-hide">
-                    <Fav id={image._id}></Fav>
-                </div>
+
                 <div className="Description-hide">
                     <p>{image.description}</p>
+                </div>
+                </Link>
+                <div className="Icon">
+                    <Fav id={image._id} />
                 </div>
             </div>
 {

@@ -6,23 +6,27 @@ import Register from './public/Register';
 import Home from './public/Home';
 import Header from './public/Header';
 import Perfil from './private/Perfil'
-import {UserContextProvider} from './context/UserContext';
+import ImageDetail from './public/ImageDetail';
+import { UserContextProvider } from './context/UserContext';
 
 
 function App() {
   return (
     <UserContextProvider>
-    <div>
-      < Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/perfil/" element={<Perfil />} > 
-        <Route path=":id" element={<Perfil />}/>
-        </Route>
-      </Routes>
-    </div>
+      <div>
+        < Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/perfil/" element={<Perfil />} >
+            <Route path=":id" element={<Perfil />} />
+          </Route>
+          <Route path="/image/" element={<ImageDetail />} >
+            <Route path=":id" element={<ImageDetail />} />
+          </Route>
+        </Routes>
+      </div>
     </UserContextProvider>
   );
 }

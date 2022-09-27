@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Card from './minicomponent/Card.js';
 import getallimagesService from "../services/getallimagesService.js";
+import HashLoader from "react-spinners/HashLoader";
 
 function Home() {
 
@@ -24,7 +25,7 @@ function Home() {
              <Card key={image._id} image={image}/>
             ))
           }
-        </div> : <div>Cargando ...</div>
+        </div> : <div style={{margin:'0 auto', textAlign:'center', width:'100%'}}><HashLoader color={'#EB0105'} loading={true}  size={150} /></div>
       }
     </div>
   );

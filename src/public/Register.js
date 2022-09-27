@@ -1,16 +1,17 @@
-import React,{useState} from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 //import iconoreg from "../iconoreg.png";
 import registerService from "../services/registerService";
 import { useNavigate } from "react-router-dom";
 
-import Alert from '@mui/material/Alert';
+
+import Swal from 'sweetalert2'
 
 function Register() {
     let navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [alert, setAlert] = useState("0")
+   
     const onSubmit = data => {
         const name = data.name
         const user = data.user
@@ -20,24 +21,34 @@ function Register() {
             .then(res => {
                 console.log(res)
                 if(res.ok === false){
-                    setAlert("2")
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'no pudo crear cuenta',
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                      })
                 }else{
-                    setAlert("1")
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'iniciado correctamente ',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                      })
+                      navigate(`/`);
                 }
                 
 
             })
             .catch(err => {
                 console.log("no pudo registrar por: " + err)
-                setAlert("2")
+                Swal.fire({
+                    title: 'Error!',
+                    text: "no pudo registrar por: " + err,
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                  })
             })
-            const timer = setTimeout(() => {
-                if(alert === "1"){
-                    navigate(`/`);
-                }
-                setAlert("0")
-            }, 2000);
-            return () => clearTimeout(timer);
+
     };
     return (
         <div className="Login-wrapper">
@@ -78,18 +89,7 @@ function Register() {
                 </div>
 
             </div>
-            {
-                alert === "1" &&
-                <Alert variant="filled" severity="success">
-                    This is a success alert — check it out!
-                </Alert>
-            }
-            {
-                alert === "2" &&
-                <Alert variant="filled" severity="error">
-                    This is an error alert — check it out!
-                </Alert>
-            }
+ 
         </div>
     );
 }

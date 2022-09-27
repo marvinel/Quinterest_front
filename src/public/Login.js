@@ -1,49 +1,56 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import useUser from "../useUser";
 import loginService from "../services/loginService";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
-import Alert from '@mui/material/Alert';
+
 function Login() {
     let navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { login, isLogged } = useUser();
-    const [alert, setAlert] = useState("0")
+    const { login } = useUser();
+    
 
-    useEffect(() => {
-        if (isLogged) console.log("No deberia poder entrar al login")
-    }, [isLogged])
+
 
     const onSubmit = data => {
 
         const email = data.email
         const password = data.password
-        var ir = alert
+        
         loginService({ email, password })
             .then(res => {
                 console.log(res)
-                setAlert("1")
-                ir = "1";
+                
+                
                 login(res);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'iniciado correctamente ',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+                  navigate(`/`);
 
             })
             .catch(err => {
                 console.log("no pudo iniciar sesion por: " + err)
-                setAlert("2")
+                
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'no pudo iniciar sesion por'+ err,
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                  })
             })
 
-        const timer = setTimeout(() => {
-            setAlert("0")
-            if(ir === "1"){
-                navigate(`/`);
-            }
-        }, 2000);
+
         
-        return () => clearTimeout(timer);
+ 
 
     };
 
@@ -88,19 +95,6 @@ function Login() {
                 </div>
 
             </div>
-
-            {
-                alert === "1" &&
-                <Alert variant="filled" severity="success">
-                    This is a success alert — check it out!
-                </Alert>
-            }
-            {
-                alert === "2" &&
-                <Alert variant="filled" severity="error">
-                    This is an error alert — check it out!
-                </Alert>
-            }
 
         </div>
 

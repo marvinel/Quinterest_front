@@ -29,9 +29,24 @@ export default function useUser() {
             .catch(err => console.error("error: "+err));
     }, [jwt, setFavs])
 
+    const deletefav = useCallback(({ id }) => {
+        console.log(jwt)
+        axios.post(`http://localhost:3000/deletefavs/${id}`, {
+            token: jwt
+        })
+            .then(res => {
+                console.log("aca se eliminan fav")
+                console.log(res.data.favs)
+                setFavs(res.data.favs)
+                
+            })
+            .catch(err => console.error("error: "+err));
+    }, [jwt, setFavs])
+
 
     return {
         addfav,
+        deletefav,
         favs,
         isLogged: Boolean(jwt),
         login,
