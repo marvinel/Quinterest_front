@@ -10,12 +10,10 @@ import Swal from 'sweetalert2'
 
 function Login() {
     let navigate = useNavigate();
-
+  
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { login } = useUser();
     
-
-
 
     const onSubmit = data => {
 
@@ -34,7 +32,8 @@ function Login() {
                     icon: 'success',
                     confirmButtonText: 'Cool'
                   })
-                  navigate(`/`);
+                 // history.back()
+                  navigate(-1);
 
             })
             .catch(err => {
