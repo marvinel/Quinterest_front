@@ -7,25 +7,26 @@ import ImageDetail from "./ImageDetail";
 import { useParams } from "react-router-dom";
 import useUser from "../useUser";
 function Home() {
-  const { userid } = useUser();
+  const { userid, jwt } = useUser();
   const [images, setImages] = useState({});
-  const [modal, setModal] = useState(false);
+ 
 
-  let { id } = useParams();
+  let { imageid } = useParams();
   useEffect(() => {
-    console.log(userid)
-    console.log("modal: "+ modal)
+    console.log("usuario:"+userid)
+    console.log(jwt)
+
     
     getallimagesService().then((res) => {
       setImages(res);
     });
-  }, [modal,userid]);
+  }, [userid,jwt]);
   return (
     <div>
       {images.images ? (
         <div className="Galeria">
           {images.images.map((image) => (
-            <Card key={image._id} image={image} showmodal={()=> setModal(true)} />
+            <Card key={image._id} image={image}  />
           ))}
         </div>
       ) : (
@@ -33,9 +34,9 @@ function Home() {
           <HashLoader color={"#EB0105"} loading={true} size={150} />
         </div>
       )}
-      { id &&
+      { imageid &&
      <div className="Wrapper-Detail">
-     <ImageDetail userid={userid} />
+     <ImageDetail userid={userid} jwt={jwt} />
    </div>
       }
  

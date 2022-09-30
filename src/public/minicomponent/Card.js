@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Fav from "../Fav.js";
 
 
-function Card({ image,showmodal }) {
+function Card({ image }) {
 
 
     return (
@@ -12,7 +12,7 @@ function Card({ image,showmodal }) {
 
 
             <div className="Image-wrapper">
-                <Link to={`/image/${image._id}`} onClick={showmodal}>
+                <Link to={`/image/${image._id}`} >
                
                 <img src={image.image.secure_url} alt={image.title} />
 

@@ -450,10 +450,24 @@ a{
 }
 .Edit-Perfil-img{
   position: absolute;
-  top: 0;
-  left: 50%;
+  top: 10px;
+  left: 30%;
   z-index: 1;
   color: #282c34;
+  display: none;
+ 
+}
+.Edit-Perfil-img button{
+  background-color: #da4126;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  width: 60px;
+}
+.Edit-Perfil-img button:hover{
+  background-color: #b3331c;
+ cursor: pointer;
 }
 .Perfil-img{
 position: absolute;
@@ -466,6 +480,9 @@ left: 50%;
 margin-left: -75px;
 overflow: hidden;
 background-color:#DDDDDD ;
+}
+.Perfil-img:hover .Edit-Perfil-img{
+  display: block;
 }
 
 .Perfil-img img{
@@ -480,6 +497,7 @@ margin-top: 100px;
   overflow-y: scroll;
   height: 70vh;
   margin: 10px;
+  width: 100%;
 }
 
 /*------------------------------GALERIA DE IMAGENES DEL PERFIL-----------------------------------------------*/

@@ -4,19 +4,22 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";
 import Fav from "./Fav.js";
-function ImageDetail({userid}) {
-  const [image, setImage] = useState({});
-  let { id } = useParams();
-  useEffect(() => {
-    console.log(`http://localhost:3000/image/${id}`);
-    axios
-      .get(`http://localhost:3000/image/${id}`)
-      .then((res) => {
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
+function ImageDetail({ userid, jwt }) {
+  let navigate = useNavigate();
+  const [image, setImage] = useState({});
+  let { imageid } = useParams();
+  useEffect(() => {
+    console.log(`http://localhost:3000/image/${imageid}`);
+    axios
+      .get(`http://localhost:3000/image/${imageid}`)
+      .then((res) => {
         setImage(res.data.image);
       })
       .catch((err) => console.error(err));
-  }, [id]);
+  }, [imageid]);
 
   function descargar() {
     console.log("hola");
@@ -28,6 +31,22 @@ function ImageDetail({userid}) {
       "href",
       "data:application/octet-stream," + encodeURIComponent(fileUrl)
     );
+  }
+  const eliminarimagen=()=>{
+    console.log("Procedo a eliminar: "+ imageid)
+    console.log(jwt)
+    try {
+      axios.post(`http://localhost:3000/image/${imageid}/delete`, {
+        token: jwt
+    })
+        .then(res => {     
+            console.log(res.data)            
+        })
+        .catch(err => console.error("error: "+err));
+    } catch (error) {
+      console.error(error)
+    }
+
   }
   return (
     <div className="ImageDetail">
@@ -42,13 +61,17 @@ function ImageDetail({userid}) {
       )}
       {image.title ? (
         <div className="DetailRight">
+          <div>
+            <button onClick={() => navigate(-1)}>Cerrar</button>
+          </div>
+
           <div className="Top-detalles">
-            <p>{image.created_at}</p>
-            { userid === image.user ?
-            <div>Eliminar</div>:
-            <Fav id={image._id} lugar={"detalle"} />
-            }
-            
+            <p>{moment(image.created_at).format("MMMM Do YYYY")}</p>
+            {userid === image.user ? (
+              <div onClick={eliminarimagen}>Eliminar</div>
+            ) : (
+              <Fav id={image._id} lugar={"detalle"} />
+            )}
           </div>
           <p className="Detalle-usuario">
             subido por <span>Marvin Santiago</span>

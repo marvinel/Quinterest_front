@@ -7,7 +7,7 @@ export default function useUser() {
     const { favs, jwt, setFavs, setJwt,setUserid,userid } = useContext(Context)
     
     const login = useCallback((user) => {
-        console.log("usuarioid: "+user.id)
+      
         setUserid(user.id)
         setJwt(user.token)
         window.sessionStorage.setItem('jwt', user.token);
@@ -53,6 +53,7 @@ export default function useUser() {
         isLogged: Boolean(jwt),
         login,
         logout,
-        userid
+        userid,
+        jwt
     }
 }

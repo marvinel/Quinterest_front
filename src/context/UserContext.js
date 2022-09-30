@@ -19,6 +19,7 @@ export function UserContextProvider({children}){
             .then(res => {
                 console.log(res.data);
                 setFavs(res.data.favs)
+                setUserid(res.data.user)
             })
             .catch(err => console.error(err));
     }, [jwt])

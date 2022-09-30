@@ -13,10 +13,11 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-
+import { Link } from "react-router-dom";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 import HashLoader from "react-spinners/HashLoader";
+import ImageDetail from "../public/ImageDetail";
 
 const style = {
   position: "absolute",
@@ -34,8 +35,8 @@ const style = {
 
 function Perfil() {
   let navigate = useNavigate();
-  const { jwt, favs } = useContext(Context);
-  let { id } = useParams();
+  const { jwt, favs, userid } = useContext(Context);
+  let { id, imageid } = useParams();
   const [info, setInfo] = useState({});
   const [img, setImg] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
@@ -121,9 +122,16 @@ function Perfil() {
         <div className="User-section">
           <section className="Perfil-info">
             <div className="Perfil-img">
-              <img src={info.profileimg?.secure_url} alt={info.name}></img>
+              <img
+                src={
+                  info.profileimg
+                    ? info.profileimg.secure_url
+                    : require("../assets/perfil.png")
+                }
+                alt={info.name}
+              ></img>
               <div className="Edit-Perfil-img">
-                <Button onClick={() => handleOpen("1")}>editar</Button>{" "}
+                <button onClick={() => handleOpen("1")}>editar</button>
               </div>
             </div>
             <div className="Perfil-detail">
@@ -190,11 +198,13 @@ function Perfil() {
                 <div className="Perfil-gallery">
                   {img.map((item) => (
                     <div key={item._id} className="Perfil-gallery-img">
-                      <img src={item.image.secure_url} alt={item.title}></img>
+                      <Link to={`image/${item._id}`}>
+                        <img src={item.image.secure_url} alt={item.title}></img>
 
-                      <p className="Perfil-gallery-img-description">
-                        {item.description}
-                      </p>
+                        <p className="Perfil-gallery-img-description">
+                          {item.description}
+                        </p>
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -203,10 +213,14 @@ function Perfil() {
                 <div className="Perfil-gallery">
                   {favs.map((item) => (
                     <div key={item._id} className="Perfil-gallery-img">
-                      <img src={item.secure_url} alt="b"></img>
-                      <span className="Perfil-gallery-img-description">
-                        Hola hola que tal
-                      </span>
+                      <Link to={`image/${item.imgid
+                      
+                    }`}>
+                        <img src={item.secure_url} alt="b"></img>
+                        <span className="Perfil-gallery-img-description">
+                          Hola hola que tal
+                        </span>
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -214,6 +228,11 @@ function Perfil() {
             </TabContext>
           </section>
         </div>
+        {imageid && (
+          <div className="Wrapper-Detail">
+            <ImageDetail userid={userid} />
+          </div>
+        )}
       </div>
     );
   }
