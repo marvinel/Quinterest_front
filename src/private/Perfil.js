@@ -17,6 +17,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 import HashLoader from "react-spinners/HashLoader";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -37,7 +38,9 @@ function Perfil() {
   let { id } = useParams();
   const [info, setInfo] = useState({});
   const [img, setImg] = useState({});
-  const [selectedFile, setSelectedFile] = React.useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   useEffect(() => {
     let id2 = id || "";
     if (!jwt && !id) {
@@ -67,26 +70,31 @@ function Perfil() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event);
+    console.log(info);
     var bodyFormData = new FormData();
     bodyFormData.append("image", selectedFile);
-    bodyFormData.append("userId", "62ffa9e2c8c63c8e90e3d54f");
+    bodyFormData.append("userId", info._id);
+    console.log("iduser:" + id);
     if (open.type === "2") {
-      bodyFormData.append("title", "image 5");
-      bodyFormData.append("description", " description 5");
-      axios
-        .post(`http://localhost:3000/upload`, bodyFormData)
-        .then((res) => {
+      bodyFormData.append("title", title);
+      bodyFormData.append("description", description);
+      console.log("aca");
+      try {
+        axios.post(`http://localhost:3000/upload`, bodyFormData).then((res) => {
           console.log(img);
           console.log(res.data.new_image);
           setImg((img) => [...img, res.data.new_image]);
-        })
-        .catch((err) => console.error("error: " + err));
+          setOpen({ type: "0", open: false });
+        });
+      } catch (error) {
+        console.error("error: " + error);
+      }
     } else {
       axios
         .put(`http://localhost:3000/profileimg`, bodyFormData)
         .then((res) => {
           console.log(res);
+          setOpen({ type: "0", open: false });
         })
         .catch((err) => console.error("error: " + err));
     }
@@ -94,6 +102,8 @@ function Perfil() {
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
   };
+  const handleTitle = (event) => setTitle(event.target.value);
+  const handleDescription = (event) => setDescription(event.target.value);
 
   const [open, setOpen] = React.useState({ type: "0", open: false });
   const handleOpen = (type) => setOpen({ type: type, open: true });
@@ -122,9 +132,11 @@ function Perfil() {
             </div>
           </section>
           <section className="My-Img">
-
-           
-            <Button variant="outlined" startIcon={<AddCircleOutlineIcon /> } onClick={() => handleOpen("2")}>
+            <Button
+              variant="outlined"
+              startIcon={<AddCircleOutlineIcon />}
+              onClick={() => handleOpen("2")}
+            >
               Sube una imagen
             </Button>
             <Modal
@@ -135,6 +147,32 @@ function Perfil() {
             >
               <Box sx={style}>
                 <form className="formmodal" onSubmit={handleSubmit}>
+                  <label for="title" className="form__label">
+                    Image Title
+                  </label>
+                  <input
+                    type="text"
+                    className="form__input"
+                    id="title"
+                    placeholder="Image Title"
+                    required=""
+                    value={title}
+                    onChange={handleTitle}
+                  />
+
+                  <label for="description" className="form__label">
+                    Description
+                  </label>
+                  <textarea
+                    type="text"
+                    classzName="form__input"
+                    id="description"
+                    placeholder="Description"
+                    required=""
+                    value={description}
+                    onChange={handleDescription}
+                  />
+
                   <input type="file" onChange={handleFileSelect} />
                   <input type="submit" value="Upload File" />
                 </form>
@@ -153,7 +191,7 @@ function Perfil() {
                   {img.map((item) => (
                     <div key={item._id} className="Perfil-gallery-img">
                       <img src={item.image.secure_url} alt={item.title}></img>
-                      
+
                       <p className="Perfil-gallery-img-description">
                         {item.description}
                       </p>

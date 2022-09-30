@@ -4,12 +4,14 @@ import axios from 'axios';
 import Context from "./context/UserContext";
 
 export default function useUser() {
-    const { favs, jwt, setFavs, setJwt } = useContext(Context)
-
+    const { favs, jwt, setFavs, setJwt,setUserid,userid } = useContext(Context)
+    
     const login = useCallback((user) => {
+        console.log("usuarioid: "+user.id)
+        setUserid(user.id)
         setJwt(user.token)
         window.sessionStorage.setItem('jwt', user.token);
-    }, [setJwt])
+    }, [setJwt, setUserid])
 
     const logout = useCallback(() => {
         setJwt(null)
@@ -50,6 +52,7 @@ export default function useUser() {
         favs,
         isLogged: Boolean(jwt),
         login,
-        logout
+        logout,
+        userid
     }
 }

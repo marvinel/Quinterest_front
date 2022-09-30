@@ -4,17 +4,22 @@ import Card from "./minicomponent/Card.js";
 import getallimagesService from "../services/getallimagesService.js";
 import HashLoader from "react-spinners/HashLoader";
 import ImageDetail from "./ImageDetail";
+import { useParams } from "react-router-dom";
+import useUser from "../useUser";
 function Home() {
+  const { userid } = useUser();
   const [images, setImages] = useState({});
   const [modal, setModal] = useState(false);
 
-
+  let { id } = useParams();
   useEffect(() => {
-    setModal(false)
+    console.log(userid)
+    console.log("modal: "+ modal)
+    
     getallimagesService().then((res) => {
       setImages(res);
     });
-  }, []);
+  }, [modal,userid]);
   return (
     <div>
       {images.images ? (
@@ -28,9 +33,9 @@ function Home() {
           <HashLoader color={"#EB0105"} loading={true} size={150} />
         </div>
       )}
-      { modal &&
+      { id &&
      <div className="Wrapper-Detail">
-     <ImageDetail />
+     <ImageDetail userid={userid} />
    </div>
       }
  

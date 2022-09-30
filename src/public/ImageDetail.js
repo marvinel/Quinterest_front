@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";
 import Fav from "./Fav.js";
-function ImageDetail(props) {
+function ImageDetail({userid}) {
   const [image, setImage] = useState({});
   let { id } = useParams();
   useEffect(() => {
@@ -12,7 +12,7 @@ function ImageDetail(props) {
     axios
       .get(`http://localhost:3000/image/${id}`)
       .then((res) => {
-        console.log(res.data.image);
+
         setImage(res.data.image);
       })
       .catch((err) => console.error(err));
@@ -44,8 +44,11 @@ function ImageDetail(props) {
         <div className="DetailRight">
           <div className="Top-detalles">
             <p>{image.created_at}</p>
-
+            { userid === image.user ?
+            <div>Eliminar</div>:
             <Fav id={image._id} lugar={"detalle"} />
+            }
+            
           </div>
           <p className="Detalle-usuario">
             subido por <span>Marvin Santiago</span>
