@@ -21,12 +21,13 @@ function Home() {
       setImages(res);
     });
   }, [userid,jwt]);
+
   return (
     <div>
       {images.images ? (
         <div className="Galeria">
           {images.images.map((image) => (
-            <Card key={image._id} image={image}  />
+            <Card key={image._id} image={image} jwt={jwt}  />
           ))}
         </div>
       ) : (

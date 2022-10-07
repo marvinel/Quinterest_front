@@ -6,7 +6,7 @@ import HashLoader from "react-spinners/HashLoader";
 import Fav from "./Fav.js";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 function ImageDetail({ userid, jwt }) {
   let navigate = useNavigate();
   const [image, setImage] = useState({});
@@ -74,7 +74,7 @@ function ImageDetail({ userid, jwt }) {
             )}
           </div>
           <p className="Detalle-usuario">
-            subido por <span>Marvin Santiago</span>
+            subido por  <span><Link to={"/perfil/" + image.user}>Persona</Link></span>
           </p>
           <div>
             <p className="Detalle-title">{image.title}</p>
