@@ -18,7 +18,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 import HashLoader from "react-spinners/HashLoader";
 import ImageDetail from "../public/ImageDetail";
-
+import Swal from "sweetalert2";
 const style = {
   position: "absolute",
   top: "50%",
@@ -87,6 +87,13 @@ function Perfil() {
           setImg((img) => [...img, res.data.new_image]);
           setOpen({ type: "0", open: false });
         });
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your image has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } catch (error) {
         console.error("error: " + error);
       }
@@ -96,6 +103,13 @@ function Perfil() {
         .then((res) => {
           console.log(res);
           setOpen({ type: "0", open: false });
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your image has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         })
         .catch((err) => console.error("error: " + err));
     }
@@ -155,31 +169,35 @@ function Perfil() {
             >
               <Box sx={style}>
                 <form className="formmodal" onSubmit={handleSubmit}>
-                  <label for="title" className="form__label">
-                    Image Title
-                  </label>
-                  <input
-                    type="text"
-                    className="form__input"
-                    id="title"
-                    placeholder="Image Title"
-                    required=""
-                    value={title}
-                    onChange={handleTitle}
-                  />
+                  {open.type !== "1" && (
+                    <>
+                      <label for="title" className="form__label">
+                        Image Title
+                      </label>
+                      <input
+                        type="text"
+                        className="form__input"
+                        id="title"
+                        placeholder="Image Title"
+                        required=""
+                        value={title}
+                        onChange={handleTitle}
+                      />
 
-                  <label for="description" className="form__label">
-                    Description
-                  </label>
-                  <textarea
-                    type="text"
-                    classzName="form__input"
-                    id="description"
-                    placeholder="Description"
-                    required=""
-                    value={description}
-                    onChange={handleDescription}
-                  />
+                      <label for="description" className="form__label">
+                        Description
+                      </label>
+                      <textarea
+                        type="text"
+                        classzName="form__input"
+                        id="description"
+                        placeholder="Description"
+                        required=""
+                        value={description}
+                        onChange={handleDescription}
+                      />
+                    </>
+                  )}
 
                   <input type="file" onChange={handleFileSelect} />
                   <input type="submit" value="Upload File" />
@@ -213,9 +231,7 @@ function Perfil() {
                 <div className="Perfil-gallery">
                   {favs.map((item) => (
                     <div key={item._id} className="Perfil-gallery-img">
-                      <Link to={`image/${item.imgid
-                      
-                    }`}>
+                      <Link to={`image/${item.imgid}`}>
                         <img src={item.secure_url} alt="b"></img>
                         <span className="Perfil-gallery-img-description">
                           Hola hola que tal
@@ -230,7 +246,7 @@ function Perfil() {
         </div>
         {imageid && (
           <div className="Wrapper-Detail">
-            <ImageDetail userid={userid} />
+            <ImageDetail userid={userid} jwt={jwt} />
           </div>
         )}
       </div>
