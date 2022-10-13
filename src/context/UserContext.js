@@ -9,6 +9,7 @@ export function UserContextProvider({children}){
     const [userid, setUserid] = useState('')
 
     useEffect(()=>{
+      
         if(!jwt) return setFavs([])
 
         axios.get(`http://localhost:3000/favs`, {
@@ -22,6 +23,7 @@ export function UserContextProvider({children}){
                 setUserid(res.data.user)
             })
             .catch(err => console.error(err));
+
     }, [jwt])
     return <Context.Provider value={{
         favs,

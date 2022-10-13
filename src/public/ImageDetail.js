@@ -7,6 +7,8 @@ import Fav from "./Fav.js";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+import Swal from 'sweetalert2'
 function ImageDetail({ userid, jwt }) {
   let navigate = useNavigate();
   const [image, setImage] = useState({});
@@ -22,30 +24,59 @@ function ImageDetail({ userid, jwt }) {
   }, [imageid]);
 
   function descargar() {
-    console.log("hola");
+   
     var a = document.getElementById("descargar");
-    console.log(a);
+    
     var fileUrl = a.getAttribute("href");
-    console.log(fileUrl);
+    
     a.setAttribute(
       "href",
       "data:application/octet-stream," + encodeURIComponent(fileUrl)
     );
   }
   const eliminarimagen=()=>{
-    console.log("Procedo a eliminar: "+ imageid)
-    console.log(jwt)
-    try {
-      axios.post(`http://localhost:3000/image/${imageid}/delete`, {
-        token: jwt
-    })
-        .then(res => {     
-            console.log(res.data)            
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          console.log("la deberia eliminar")
+          console.log(imageid)
+          console.log(jwt)
+          axios.post(`http://localhost:3000/image/${imageid}/delete`, {
+            token: jwt
         })
-        .catch(err => console.error("error: "+err));
-    } catch (error) {
-      console.error(error)
-    }
+            .then(res => {     
+                console.log(res.data)
+                Swal.fire(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                )    
+                navigate(-1)        
+            })
+            
+        } catch (error) {
+          console.log("no la elimino")
+          console.error(error)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
+        }
+
+      }
+    })
+
 
   }
   return (
@@ -68,7 +99,7 @@ function ImageDetail({ userid, jwt }) {
           <div className="Top-detalles">
             <p>{moment(image.created_at).format("MMMM Do YYYY")}</p>
             {userid === image.user ? (
-              <div onClick={eliminarimagen}>Eliminar</div>
+              <button className="Guardar" onClick={eliminarimagen}>Eliminar</button>
             ) : (
               <Fav id={image._id} lugar={"detalle"} />
             )}
