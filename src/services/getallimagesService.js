@@ -6,7 +6,7 @@ import axios from 'axios';
     const ENDPOINT = "https://quinteresback-production.up.railway.app/"
     return await axios.get(ENDPOINT)
     .then(res => {
-      console.log(res.data);
+      
       return res.data
     })
     .catch(err => console.error(err));

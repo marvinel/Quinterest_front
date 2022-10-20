@@ -14,7 +14,7 @@ function Card({ image }) {
             //.get(`http://localhost:3000/usersby?id=${image.user}`)
             .get(`https://quinteresback-production.up.railway.app/usersby?id=${image.user}`)
             .then((res) => {
-                console.log(res.data?.profileimg?.secure_url);
+                
                 setUser(res.data)
             })
             .catch((err) => console.error(err));
