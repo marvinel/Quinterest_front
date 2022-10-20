@@ -4,7 +4,7 @@ import Card from "./minicomponent/Card.js";
 import getallimagesService from "../services/getallimagesService.js";
 import HashLoader from "react-spinners/HashLoader";
 import ImageDetail from "./ImageDetail";
-import { Navigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import useUser from "../useUser";
 function Home() {
   const { userid, jwt } = useUser();
