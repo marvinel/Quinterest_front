@@ -16,7 +16,8 @@ function ImageDetail({ userid, jwt }) {
   useEffect(() => {
    
     axios
-      .get(`http://localhost:3000/image/${imageid}`)
+      //.get(`http://localhost:3000/image/${imageid}`)
+      .get(`https://quinteresback-production.up.railway.app/image/${imageid}`)
       .then((res) => {
         setImage(res.data.image);
       })
@@ -47,8 +48,9 @@ function ImageDetail({ userid, jwt }) {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-   
-          axios.post(`http://localhost:3000/image/${imageid}/delete`, {
+          
+          //axios.post(`http://localhost:3000/image/${imageid}/delete`, {
+          axios.post(`https://quinteresback-production.up.railway.app/image/${imageid}/delete`, {  
             token: jwt
         })
             .then(res => {     

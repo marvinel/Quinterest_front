@@ -52,7 +52,8 @@ function Perfil() {
         setOwn(true);
       }
       axios
-        .get(`http://localhost:3000/perfil?id=${id}`, {
+       // .get(`http://localhost:3000/perfil?id=${id}`, {
+        .get(`https://quinteresback-production.up.railway.app/perfil?id=${id}`, {
           headers: {
             Authorization: jwt,
           },
@@ -64,7 +65,7 @@ function Perfil() {
         })
         .catch((err) => console.error(err));
     }
-  }, [id, jwt, navigate]);
+  }, [id, userid, jwt, navigate]);
 
   const [value, setValue] = React.useState("1");
 
@@ -84,7 +85,9 @@ function Perfil() {
       bodyFormData.append("description", description);
      
       try {
-        axios.post(`http://localhost:3000/upload`, bodyFormData).then((res) => {
+       
+       // axios.post(`http://localhost:3000/upload`, bodyFormData).then((res) => {
+        axios.post(`https://quinteresback-production.up.railway.app/upload`, bodyFormData).then((res) => {
         
           setImg((img) => [...img, res.data.new_image]);
           setOpen({ type: "0", open: false });
@@ -101,7 +104,8 @@ function Perfil() {
       }
     } else {
       axios
-        .put(`http://localhost:3000/profileimg`, bodyFormData)
+        //.put(`http://localhost:3000/profileimg`, bodyFormData)
+        .put(`https://quinteresback-production.up.railway.app/profileimg`, bodyFormData)
         .then((res) => {
           
           setOpen({ type: "0", open: false });

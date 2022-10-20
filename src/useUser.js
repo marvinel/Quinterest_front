@@ -4,10 +4,10 @@ import axios from 'axios';
 import Context from "./context/UserContext";
 
 export default function useUser() {
-    const { favs, jwt, setFavs, setJwt,setUserid,userid } = useContext(Context)
-    
+    const { favs, jwt, setFavs, setJwt, setUserid, userid } = useContext(Context)
+
     const login = useCallback((user) => {
-      
+
         setUserid(user.id)
         setJwt(user.token)
         window.sessionStorage.setItem('jwt', user.token);
@@ -19,30 +19,31 @@ export default function useUser() {
     }, [setJwt])
 
     const addfav = useCallback(({ id }) => {
-        axios.post(`http://localhost:3000/addfav/${id}`, {
+
+        //axios.post(`http://localhost:3000/addfav/${id}`, {
+        axios.post(`https://quinteresback-production.up.railway.app/addfav/${id}`, {
             token: jwt
         })
             .then(res => {
-                console.log("aca se añaden fav")
-                console.log(res.data.favs)
+               
                 setFavs(res.data.favs)
-                
+
             })
-            .catch(err => console.error("error: "+err));
+            .catch(err => console.error("error: " + err));
     }, [jwt, setFavs])
 
     const deletefav = useCallback(({ id }) => {
-        console.log(jwt)
-        axios.post(`http://localhost:3000/deletefavs/${id}`, {
+       
+        //axios.post(`http://localhost:3000/deletefavs/${id}`, {
+        axios.post(`https://quinteresback-production.up.railway.app/deletefavs/${id}`, {
             token: jwt
         })
             .then(res => {
-                console.log("aca se eliminan fav")
-                console.log(res.data.favs)
+              
                 setFavs(res.data.favs)
-                
+
             })
-            .catch(err => console.error("error: "+err));
+            .catch(err => console.error("error: " + err));
     }, [jwt, setFavs])
 
 

@@ -11,8 +11,9 @@ export function UserContextProvider({children}){
     useEffect(()=>{
       
         if(!jwt) return setFavs([])
-
-        axios.get(`http://localhost:3000/favs`, {
+        
+       // axios.get(`http://localhost:3000/favs`, {
+        axios.get(`https://quinteresback-production.up.railway.app/favs`, {
             headers: {
               'Authorization': jwt
             }

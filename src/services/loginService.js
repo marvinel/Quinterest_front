@@ -2,7 +2,8 @@
 import axios from 'axios';
 
  async function  loginService({ email, password }) {
-    const ENDPOINT = "http://localhost:3000/"
+        //const ENDPOINT = "http://localhost:3000/"
+        const ENDPOINT = "https://quinteresback-production.up.railway.app/"
     return await axios.post(`${ENDPOINT}login`, {
         email: email,
         password: password

@@ -8,10 +8,11 @@ function Card({ image }) {
     const [user, setUser] = useState({})
     useEffect(() => {
 
-
-        console.log(`http://localhost:3000/usersby`);
+        
+        
         axios
-            .get(`http://localhost:3000/usersby?id=${image.user}`)
+            //.get(`http://localhost:3000/usersby?id=${image.user}`)
+            .get(`https://quinteresback-production.up.railway.app/usersby?id=${image.user}`)
             .then((res) => {
                 console.log(res.data?.profileimg?.secure_url);
                 setUser(res.data)
