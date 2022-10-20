@@ -22,7 +22,7 @@ function Login() {
         
         loginService({ email, password })
             .then(res => {
-                console.log(res)
+                
                 
                 
                 login(res);
@@ -37,7 +37,7 @@ function Login() {
 
             })
             .catch(err => {
-                console.log("no pudo iniciar sesion por: " + err)
+                
                 
                 Swal.fire({
                     title: 'Error!',

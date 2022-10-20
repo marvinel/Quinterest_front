@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function Fav({ id, lugar }) {
   let navigate = useNavigate();
   const { isLogged, addfav,deletefav, favs } = useUser();
-  const isFaved = favs.some((favId) => favId.imgid === id);
+  const isFaved = favs?.some((favId) => favId.imgid === id);
 
   const handleClick = () => {
     if (!isLogged) navigate(`/login`);

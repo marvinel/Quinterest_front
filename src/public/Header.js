@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import useUser from "../useUser";
  
 function Header() {
-    const {isLogged, logout} = useUser();
+    const {isLogged, logout,userid} = useUser();
   
     window.onscroll = function(){
         const hed = document.querySelector('.Header')
@@ -27,7 +27,11 @@ function Header() {
                 <nav className="Nav">
                     <ul>
                     <Link to="/"><li className="item-header" >Inicio</li></Link>
-                    <Link to="/perfil/">  <li className="item-header">Perfil</li></Link>
+                   
+                    {isLogged
+                       ?<Link to={"/perfil/"+userid}>  <li className="item-header">Perfil</li></Link>
+                       : <Link to={"/login"}>  <li className="item-header">Perfil</li></Link>
+                    } 
                        {isLogged
                        ?<li><button className="Logout" onClick={logout}>Logout</button></li>
                        : <Link to="/login"><li className="item-header"> Iniciar sesion</li></Link>

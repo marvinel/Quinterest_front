@@ -13,8 +13,6 @@ function Home() {
 
   let { imageid } = useParams();
   useEffect(() => {
-    console.log("usuario:"+userid)
-    console.log(jwt)
 
     
     getallimagesService().then((res) => {

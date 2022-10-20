@@ -21,12 +21,14 @@ function App() {
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/perfil" element={<Perfil />}>
-            <Route path=":id" element={<Perfil />} />
+          <Route path="/perfil/:id/" element={<Perfil />}>
+
             <Route path="image/" element={<Perfil />}>
               <Route path=":imageid" element={<Perfil />} />
             </Route>
           </Route>
+          <Route path='*' element={<h1>No se encuentra</h1>} />
+
         </Routes>
       </div>
     </UserContextProvider>

@@ -14,7 +14,7 @@ function ImageDetail({ userid, jwt }) {
   const [image, setImage] = useState({});
   let { imageid } = useParams();
   useEffect(() => {
-    console.log(`http://localhost:3000/image/${imageid}`);
+   
     axios
       .get(`http://localhost:3000/image/${imageid}`)
       .then((res) => {
@@ -47,14 +47,12 @@ function ImageDetail({ userid, jwt }) {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          console.log("la deberia eliminar")
-          console.log(imageid)
-          console.log(jwt)
+   
           axios.post(`http://localhost:3000/image/${imageid}/delete`, {
             token: jwt
         })
             .then(res => {     
-                console.log(res.data)
+              
                 Swal.fire(
                   'Deleted!',
                   'Your file has been deleted.',
@@ -64,7 +62,7 @@ function ImageDetail({ userid, jwt }) {
             })
             
         } catch (error) {
-          console.log("no la elimino")
+          
           console.error(error)
           Swal.fire({
             icon: 'error',
@@ -93,7 +91,7 @@ function ImageDetail({ userid, jwt }) {
       {image.title ? (
         <div className="DetailRight">
           <div>
-            <button onClick={() => navigate(-1)}>Cerrar</button>
+            <button className="Cerrar" onClick={() => navigate(-1)}>X</button>
           </div>
 
           <div className="Top-detalles">

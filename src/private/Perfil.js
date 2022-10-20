@@ -42,20 +42,23 @@ function Perfil() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [own, setOwn] = useState(false);
   useEffect(() => {
-    let id2 = id || "";
-    if (!jwt && !id) {
+   
+    if (!jwt ) {
       navigate(`/login`);
     } else {
-      console.log(`http://localhost:3000/perfil?id=${id2}`);
+      if(userid === id) { 
+        setOwn(true);
+      }
       axios
-        .get(`http://localhost:3000/perfil?id=${id2}`, {
+        .get(`http://localhost:3000/perfil?id=${id}`, {
           headers: {
             Authorization: jwt,
           },
         })
         .then((res) => {
-          console.log(res.data);
+          
           setInfo(res.data);
           setImg(res.data.images);
         })
@@ -71,19 +74,18 @@ function Perfil() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(info);
+   
     var bodyFormData = new FormData();
     bodyFormData.append("image", selectedFile);
     bodyFormData.append("userId", info._id);
-    console.log("iduser:" + id);
+
     if (open.type === "2") {
       bodyFormData.append("title", title);
       bodyFormData.append("description", description);
-      console.log("aca");
+     
       try {
         axios.post(`http://localhost:3000/upload`, bodyFormData).then((res) => {
-          console.log(img);
-          console.log(res.data.new_image);
+        
           setImg((img) => [...img, res.data.new_image]);
           setOpen({ type: "0", open: false });
         });
@@ -101,7 +103,7 @@ function Perfil() {
       axios
         .put(`http://localhost:3000/profileimg`, bodyFormData)
         .then((res) => {
-          console.log(res);
+          
           setOpen({ type: "0", open: false });
           Swal.fire({
             position: "top-end",
@@ -144,16 +146,24 @@ function Perfil() {
                 }
                 alt={info.name}
               ></img>
+              {own &&
               <div className="Edit-Perfil-img">
                 <button onClick={() => handleOpen("1")}>editar</button>
               </div>
+              }
             </div>
             <div className="Perfil-detail">
               <h2>{info.name}</h2>
-              <p>{info.user}</p>
+              <div className="Description-Section">
+                <h3>Description</h3>
+                <p><strong>Usuario: </strong> {info.user}</p>
+                <p>Mas informacion proxima</p>
+              </div>
+              
             </div>
           </section>
           <section className="My-Img">
+            {own && 
             <Button
               variant="outlined"
               startIcon={<AddCircleOutlineIcon />}
@@ -161,6 +171,7 @@ function Perfil() {
             >
               Sube una imagen
             </Button>
+  }
             <Modal
               open={open.open}
               onClose={handleClose}
@@ -229,7 +240,7 @@ function Perfil() {
               </TabPanel>
               <TabPanel value="2">
                 <div className="Perfil-gallery">
-                  {favs.map((item) => (
+                  {favs?.map((item) => (
                     <div key={item._id} className="Perfil-gallery-img">
                       <Link to={`image/${item.imgid}`}>
                         <img src={item.secure_url} alt="b"></img>
