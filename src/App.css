@@ -42,12 +42,12 @@
 .Login-wrapper{
 
 
-  background: #f6f5f7;
+  /*background: #f6f5f7;*/
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: calc(100vh - 80px);
+  /*height: calc(100vh - 80px);
   /* margin: -20px 0 50px;*/
 }
 
@@ -161,7 +161,7 @@ input {
 
 .form-container {
 
-	height: 100%;
+	
 	transition: all 0.6s ease-in-out;
   flex: 1;
 }
@@ -169,10 +169,10 @@ input {
 .overlay-container {
 
 
-	height: 100%;
+	
 	overflow: hidden;
 	transition: transform 0.6s ease-in-out;
-	z-index: 100;
+
 }
 .formmodal{
   background-color: transparent;
@@ -342,11 +342,11 @@ border-radius: 10px;
   font-weight: 600;
   margin: 0;
 }
-/*HEADER*/
+/*--------------------------------------------HEADER-------------------------------------------------------------------*/
 .Header{
   height: 80px;
   display: flex;
- 
+ flex-wrap: wrap;
   background-color: white;
   position: sticky;
   top: 0;
@@ -365,29 +365,29 @@ border-radius: 10px;
   
 }
 
-.Nav{
+.Header .Nav{
  color: black;
 }
 
-.Nav ul {
+.Header .Nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
 }
- li {
-  display: inline;
+.Header li {
+ 
  
   padding: 8px 16px;
  
-  float: left;
+  
 }
 .item-header:hover{
   border-radius: 50px;
   background-color: rgba(0, 0, 0, 0.322);
 }
-a{
+.Header a{
   color: rgb(26, 26, 26);
   font-weight:600;
   text-decoration: none;
@@ -419,6 +419,38 @@ a{
   color: white;
   
 }
+.MenuH{
+  display: none;
+}
+@media Screen and (max-width: 480px){
+  .Header{
+height: auto;
+  }
+  .MenuH{
+    display: block;
+    padding: 15px;
+    cursor: pointer;
+  }
+  .Header nav {
+    width: 100%;
+   /* display: none;*/
+    height: 0;
+    transition: all .5s ease;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .Header nav.activo{
+  /*  display: block;*/
+   height: auto;
+   pointer-events: auto;
+   background-color: white;
+  }
+  .Header .Nav ul {
+    justify-content: center;
+    flex-direction: column;
+    
+  }
+}
 /**PERFIL*/
 
 
@@ -429,6 +461,7 @@ a{
 }
 
 @media (max-width: 490px) {
+
   .User-section{
    flex-direction: column;
   
