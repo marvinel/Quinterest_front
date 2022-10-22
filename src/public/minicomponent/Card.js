@@ -17,7 +17,7 @@ function Card({ image }) {
                 
                 setUser(res.data)
             })
-            .catch((err) => console.error(err));
+            .catch((err) => console.log(err));
 
     }, [image.user]);
     return (
