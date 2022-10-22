@@ -114,9 +114,7 @@ function ImageDetail({ userid, jwt }) {
 
           <div className="Detalle-descargar">
             <button onClick={descargar}>descargar</button>
-            <a id="descargar" href={image.image.secure_url} download="cute.jpg">
-              descargar
-            </a>
+
           </div>
         </div>
       ) : (
