@@ -16,8 +16,8 @@ export default function Fav({ id, lugar }) {
     else addfav({ id });
   };
   const [label, emoji] = isFaved
-    ? ["Guardado", <BookmarkIcon color="primary" />]
-    : ["Guardar", <BookmarkBorderIcon color="primary" />];
+    ? ["Saved", <BookmarkIcon color="primary" />]
+    : ["Save", <BookmarkBorderIcon color="primary" />];
   return (
     <>{lugar === 'detalle' ?
     <button className={label} onClick={handleClick}>{label}</button>:

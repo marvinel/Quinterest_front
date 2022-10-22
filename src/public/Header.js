@@ -36,14 +36,14 @@ function Header() {
                
                 <nav className="Nav">
                     <ul>
-                    <Link to="/"><li className="item-header" >Inicio</li></Link>
+                    <Link to="/"><li className="item-header" >Home</li></Link>
                      {isLogged
-                       ?<Link to={"/perfil/"+userid}>  <li className="item-header">Perfil</li></Link>
-                       : <Link to={"/login"}>  <li className="item-header">Perfil</li></Link>
+                       ?<Link to={"/perfil/"+userid}>  <li className="item-header">Profile</li></Link>
+                       : <Link to={"/login"}>  <li className="item-header">Profile</li></Link>
                     } 
                        {isLogged
-                       ?<li><button className="Logout" onClick={logout}>Logout</button></li>
-                       : <Link to="/login"><li className="item-header"> Iniciar sesion</li></Link>
+                       ?<li><button className="Logout" onClick={logout}>Sign out</button></li>
+                       : <Link to="/login"><li className="item-header"> Sign In</li></Link>
                     } 
                     </ul>
                 </nav>

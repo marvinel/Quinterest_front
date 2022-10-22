@@ -99,13 +99,13 @@ function ImageDetail({ userid, jwt }) {
           <div className="Top-detalles">
             <p>{moment(image.created_at).format("MMMM Do YYYY")}</p>
             {userid === image.user ? (
-              <button className="Guardar" onClick={eliminarimagen}>Eliminar</button>
+              <button className="Save" onClick={eliminarimagen}>Delete</button>
             ) : (
               <Fav id={image._id} lugar={"detalle"} />
             )}
           </div>
           <p className="Detalle-usuario">
-            subido por  <span><Link to={"/perfil/" + image.user}>Persona</Link></span>
+          Uploaded by  <span><Link to={"/perfil/" + image.user}>...</Link></span>
           </p>
           <div>
             <p className="Detalle-title">{image.title}</p>

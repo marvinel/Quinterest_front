@@ -152,7 +152,7 @@ function Perfil() {
               ></img>
               {own &&
               <div className="Edit-Perfil-img">
-                <button onClick={() => handleOpen("1")}>editar</button>
+                <button onClick={() => handleOpen("1")}>Edit</button>
               </div>
               }
             </div>
@@ -160,8 +160,8 @@ function Perfil() {
               <h2>{info.name}</h2>
               <div className="Description-Section">
                 <h3>Description</h3>
-                <p><strong>Usuario: </strong> {info.user}</p>
-                <p>Mas informacion proxima</p>
+                <p><strong>User: </strong> {info.user}</p>
+                <p>Coming soon...</p>
               </div>
               
             </div>
@@ -173,7 +173,7 @@ function Perfil() {
               startIcon={<AddCircleOutlineIcon />}
               onClick={() => handleOpen("2")}
             >
-              Sube una imagen
+              Upload an image
             </Button>
   }
             <Modal
@@ -224,8 +224,8 @@ function Perfil() {
                 onChange={handleChange}
                 aria-label="lab API tabs example"
               >
-                <Tab label="Subidas" value="1" />
-                <Tab label="Favoritas" value="2" />
+                <Tab label="uploaded" value="1" />
+                <Tab label="Saved" value="2" />
               </TabList>
               <TabPanel value="1">
                 <div className="Perfil-gallery">
@@ -248,9 +248,7 @@ function Perfil() {
                     <div key={item._id} className="Perfil-gallery-img">
                       <Link to={`image/${item.imgid}`}>
                         <img src={item.secure_url} alt="b"></img>
-                        <span className="Perfil-gallery-img-description">
-                          Hola hola que tal
-                        </span>
+       
                       </Link>
                     </div>
                   ))}

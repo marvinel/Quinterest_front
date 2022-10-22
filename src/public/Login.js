@@ -28,7 +28,7 @@ function Login() {
                 login(res);
                 Swal.fire({
                     title: 'Success!',
-                    text: 'iniciado correctamente ',
+                    text: 'successfully logged in ',
                     icon: 'success',
                     confirmButtonText: 'Cool'
                   })
@@ -41,7 +41,7 @@ function Login() {
                 
                 Swal.fire({
                     title: 'Error!',
-                    text: 'no pudo iniciar sesion por'+ err,
+                    text: 'Something went wrong!',
                     icon: 'error',
                     confirmButtonText: 'Cool'
                   })

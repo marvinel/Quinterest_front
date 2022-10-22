@@ -23,14 +23,14 @@ function Register() {
                 if(res.ok === false){
                     Swal.fire({
                         title: 'Error!',
-                        text: 'no pudo crear cuenta',
+                        text: 'Something went wrong!',
                         icon: 'error',
                         confirmButtonText: 'Cool'
                       })
                 }else{
                     Swal.fire({
                         title: 'Success!',
-                        text: 'iniciado correctamente ',
+                        text: 'Account Created successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                       })
@@ -43,7 +43,7 @@ function Register() {
                 console.log("no pudo registrar por: " + err)
                 Swal.fire({
                     title: 'Error!',
-                    text: "no pudo registrar por: " + err,
+                    text: "Something went wrong! ",
                     icon: 'error',
                     confirmButtonText: 'Cool'
                   })

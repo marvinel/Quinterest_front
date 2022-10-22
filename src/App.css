@@ -402,14 +402,6 @@ border-radius: 10px;
   background-color: black;
   padding: 15px 10px;
 
- /* border: 2px solid  rgb(26, 26, 26);
-  
-  
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: bold;
-  transition: background-color .55s ease-in-out;*/
 }
 
 .Logout:hover{
@@ -443,7 +435,7 @@ height: auto;
   /*  display: block;*/
    height: auto;
    pointer-events: auto;
-   background-color: white;
+  
   }
   .Header .Nav ul {
     justify-content: center;
@@ -682,17 +674,17 @@ div .Detalle-title{
   cursor: pointer;
   background-color: red;
 }
-.Guardar{
+.Save{
   background-color: #FF4B2B;
 }
-.Guardado{
+.Saved{
   background-color:#181818;
 }
-.Guardar:hover{
+.Save:hover{
   background-color: #da4126;
   cursor: pointer
 }
-.Guardado:hover{
+.Saved:hover{
   background-color: #000000;
   cursor: pointer
 }
