@@ -25,6 +25,16 @@ function Header() {
         const nav = document.querySelector("Nav")     
             nav.classList.toggle('activo');      
     }
+    const showMenu2 = () => {
+        console.log("click")
+        const nav = document.querySelector("Nav")
+     
+        if(nav?.classList[1]){
+          console.log("aca tiene que dirigir a un lugar y quitar el menu");
+          nav.classList.toggle('activo');
+        }
+        
+      }
     return (
         <div className="Header">
            {/** 
@@ -36,14 +46,14 @@ function Header() {
                
                 <nav className="Nav">
                     <ul>
-                    <Link to="/"><li className="item-header" >Home</li></Link>
+                    <Link to="/"><li className="item-header" onClick={showMenu2} >Home</li></Link>
                      {isLogged
-                       ?<Link to={"/perfil/"+userid}>  <li className="item-header">Profile</li></Link>
-                       : <Link to={"/login"}>  <li className="item-header">Profile</li></Link>
+                       ?<Link to={"/perfil/"+userid} onClick={showMenu2} >  <li className="item-header">Profile</li></Link>
+                       : <Link to={"/login"} onClick={showMenu2} >  <li className="item-header">Profile</li></Link>
                     } 
                        {isLogged
                        ?<li><button className="Logout" onClick={logout}>Sign out</button></li>
-                       : <Link to="/login"><li className="item-header"> Sign In</li></Link>
+                       : <Link to="/login" onClick={showMenu2} ><li className="item-header"> Sign In</li></Link>
                     } 
                     </ul>
                 </nav>
