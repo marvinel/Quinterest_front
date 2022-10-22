@@ -452,32 +452,21 @@ height: auto;
   background-color: #282c34;
 }
 
-@media (max-width: 490px) {
 
-  .User-section{
-   flex-direction: column;
-  
-  }
-  .Perfil-info{
-   width: 100%;
-   height: auto;
-  }
-  .Description-Section {
-    text-align: left;
-}
-}
 .User-section{
   display: flex;
 
 }
 .Perfil-info{
   
-  background-color: #DDDDDD;
+  background: linear-gradient(180deg, rgba(221,221,221,1) 0%, rgba(255,255,255,1) 80%);
 
   position: relative;
+  width: 300px;
   
  /*height: calc(100vh - 160px);*/
 }
+
 .Edit-Perfil-img{
   position: absolute;
   top: 10px;
@@ -533,11 +522,26 @@ margin-top: 100px;
 
 .My-Img{
   overflow-y: scroll;
-  height: 70vh;
-  margin: 10px;
+  height: 80vh;
+ /* height: 70vh;
+  margin: 10px;*/
   width: 100%;
 }
 
+@media (max-width: 490px) {
+
+  .User-section{
+   flex-direction: column;
+  
+  }
+  .Perfil-info{
+   width: 100%;
+   /*height: auto;*/
+  }
+  .Description-Section {
+    text-align: left;
+}
+}
 /*------------------------------GALERIA DE IMAGENES DEL PERFIL-----------------------------------------------*/
 .Perfil-gallery{
   display: flex;
@@ -557,7 +561,7 @@ margin-top: 100px;
 }
 .Perfil-gallery-img img{
 width: 200px;
-/*height: 200px;*/
+height: 200px;
 object-fit: cover;
 position: absolute;
 bottom: 0;
@@ -593,6 +597,18 @@ line-height: 15px;
   width: 100%;
 }
 
+@media (max-width: 490px) {
+  .Perfil-gallery-img{
+  
+    width: 125px;
+    height: 125px;
+  }
+  .Perfil-gallery-img img{
+  width: 125px;
+  height: 125px;
+
+  }
+}
 /*detalles de la imagen*/
 
 .ImageDetail{
