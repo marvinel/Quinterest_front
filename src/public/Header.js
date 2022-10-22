@@ -26,11 +26,11 @@ function Header() {
             nav.classList.toggle('activo');      
     }
     const showMenu2 = () => {
-        console.log("click")
+       
         const nav = document.querySelector("Nav")
      
         if(nav?.classList[1]){
-          console.log("aca tiene que dirigir a un lugar y quitar el menu");
+         
           nav.classList.toggle('activo');
         }
         

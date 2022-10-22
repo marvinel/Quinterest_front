@@ -666,7 +666,7 @@ input {
   overflow: hidden;
   display: flex;
   padding: 25px;
-
+  position: relative;;
 
 }
 
@@ -735,8 +735,12 @@ div .Detalle-title {
   background-color: black;
   border-radius: 50%;
   border: none;
-
+  margin: 0 5px 5px;
+  border: 3px solid white;
   color: white;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .Cerrar:hover {

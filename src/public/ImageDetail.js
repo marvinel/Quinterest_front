@@ -81,6 +81,9 @@ function ImageDetail({ userid, jwt }) {
   }
   return (
     <div className="ImageDetail">
+                <div>
+            <button className="Cerrar" onClick={() => navigate(-1)}>X</button>
+          </div>
       {Boolean(image.image) ? (
         <div className="ImgLeft">
           <img src={image.image.secure_url} alt={image.title}></img>
@@ -92,9 +95,7 @@ function ImageDetail({ userid, jwt }) {
       )}
       {image.title ? (
         <div className="DetailRight">
-          <div>
-            <button className="Cerrar" onClick={() => navigate(-1)}>X</button>
-          </div>
+
 
           <div className="Top-detalles">
             <p>{moment(image.created_at).format("MMMM Do YYYY")}</p>
@@ -105,7 +106,7 @@ function ImageDetail({ userid, jwt }) {
             )}
           </div>
           <p className="Detalle-usuario">
-          Uploaded by  <span><Link to={"/perfil/" + image.user}>...</Link></span>
+          Uploaded by  {!image.admin && <span><Link to={"/perfil/" + image.user}>...</Link></span>}
           </p>
           <div>
             <p className="Detalle-title">{image.title}</p>
