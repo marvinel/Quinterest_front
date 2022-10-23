@@ -11,8 +11,8 @@ function Card({ image }) {
         
         if(!image.admin){
         axios
-            .get(`http://localhost:3000/usersby?id=${image.user}`)
-           // .get(`https://quinteresback-production.up.railway.app/usersby?id=${image.user}`)
+           // .get(`http://localhost:3000/usersby?id=${image.user}`)
+            .get(`https://quinteresback-production.up.railway.app/usersby?id=${image.user}`)
             .then((res) => {
               
                 setUser(res.data)

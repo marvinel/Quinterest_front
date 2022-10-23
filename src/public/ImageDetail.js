@@ -24,17 +24,6 @@ function ImageDetail({ userid, jwt }) {
       .catch((err) => console.error(err));
   }, [imageid]);
 
-  function descargar() {
-   
-    var a = document.getElementById("descargar");
-    
-    var fileUrl = a.getAttribute("href");
-    
-    a.setAttribute(
-      "href",
-      "data:application/octet-stream," + encodeURIComponent(fileUrl)
-    );
-  }
   const eliminarimagen=()=>{
 
     Swal.fire({
@@ -114,8 +103,8 @@ function ImageDetail({ userid, jwt }) {
           </div>
 
           <div className="Detalle-descargar">
-            <button onClick={descargar}>descargar</button>
-
+            <button >descargar</button>
+              <a href={image.image.secure_url} download>Descargar</a>
           </div>
         </div>
       ) : (
