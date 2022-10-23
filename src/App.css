@@ -727,9 +727,22 @@ div .Detalle-title {
   text-transform: uppercase;
 }
 
+.DownloadImg{
+  background-color: rgba(191, 191, 191, 0.323);
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 15px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.DownloadImg:hover{
+  background-color: rgba(191, 191, 191, 0.616);
+  cursor: pointer;
+}
 .Cerrar {
   font-size: 16px;
-  font-weight: bold;
+  font-weight:600;
   height: 30px;
   width: 30px;
   background-color: black;

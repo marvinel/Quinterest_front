@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import Swal from 'sweetalert2'
+import { saveAs } from 'file-saver';
 function ImageDetail({ userid, jwt }) {
   let navigate = useNavigate();
   const [image, setImage] = useState({});
@@ -68,6 +69,11 @@ function ImageDetail({ userid, jwt }) {
 
 
   }
+
+  const DownloadImg = (URL) =>{
+    
+    saveAs(URL,image.title+".png");
+  }
   return (
     <div className="ImageDetail">
                 <div>
@@ -103,8 +109,8 @@ function ImageDetail({ userid, jwt }) {
           </div>
 
           <div className="Detalle-descargar">
-            <button >descargar</button>
-              <a href={image.image.secure_url} download>Descargar</a>
+            <button className="DownloadImg" onClick={()=>DownloadImg(image.image.secure_url)} >Download</button>
+              
           </div>
         </div>
       ) : (
